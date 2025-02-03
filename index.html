@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Générateur de Mot de Passe</title>
+    <style>
+        body {
+            background-color: #121212;
+            color: #00aaff;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+        }
+        .container {
+            background: #1e1e1e;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 170, 255, 0.5);
+            text-align: center;
+        }
+        input {
+            width: 80%;
+            padding: 10px;
+            margin: 10px 0;
+            text-align: center;
+            font-size: 18px;
+            border: none;
+            background: #333;
+            color: #00aaff;
+            border-radius: 5px;
+        }
+        button {
+            background: #00aaff;
+            color: #121212;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 5px;
+        }
+        button:hover {
+            background: #0088cc;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Générateur de Mot de Passe</h2>
+        <input type="text" id="password" readonly>
+        <br>
+        <button onclick="generatePassword()">Générer</button>
+        <button onclick="copyPassword()">Copier</button>
+    </div>
+
+    <script>
+        function generatePassword() {
+            let chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()";
+            let password = "";
+            for (let i = 0; i < 12; i++) {
+                password += chars.charAt(Math.floor(Math.random() * chars.length));
+            }
+            document.getElementById("password").value = password;
+        }
+        
+        function copyPassword() {
+            let passwordField = document.getElementById("password");
+            passwordField.select();
+            document.execCommand("copy");
+            alert("Mot de passe copié !");
+        }
+    </script>
+</body>
+</html>
